@@ -7,19 +7,23 @@
     "postinstall": "flex-plugin pre-script-check",
     "lint": "eslint --ext js src/ functions/functions/",
     "lint:fix": "npm run lint -- --fix",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "dev": "twilio flex:plugins:start -l=debug"
   },
   "dependencies": {
-    "debug": "^4.3.2",
-    "flex-plugin-scripts": "4.1.0",
-    "react": "16.5.2",
-    "react-dom": "16.5.2"
+    "@twilio/flex-plugin-scripts": "6.0.4",
+    "debug": "^4.3.4",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-emotion": "^10.0.0",
+    "styled-components": "^5.3.6",
+    "enzyme-adapter-react-17-updated": "^1.0.2"
   },
   "devDependencies": {
-    "@twilio/flex-ui": "^1",
-    "eslint": "^7.31.0",
-    "eslint-config-twilio": "^1.35.1",
-    "husky": "^7.0.1",
-    "react-test-renderer": "16.5.2"
+    "@twilio/flex-ui": "2.1.0",
+    "eslint": "^8.35.0",
+    "eslint-config-twilio": "^2.0.0",
+    "husky": "^8.0.3",
+    "react-test-renderer": "17.0.2"
   }
 }

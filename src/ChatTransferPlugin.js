@@ -1,7 +1,9 @@
-import { FlexPlugin } from 'flex-plugin';
+import { FlexPlugin } from '@twilio/flex-plugin';
 
-import { setUpActions, setUpComponents, setUpNotifications } from './helpers';
+import { addConfigActions, setUpActions, setUpComponents, setUpNotifications } from './helpers';
+import { packageName } from './constants';
 
+// TODO merge this with packageName in the future
 const PLUGIN_NAME = 'ChatTransferPlugin';
 
 export default class ChatTransferPlugin extends FlexPlugin {
@@ -17,6 +19,18 @@ export default class ChatTransferPlugin extends FlexPlugin {
    * @param manager { import('@twilio/flex-ui').Manager }
    */
   init(flex, manager) {
+    addConfigActions(flex);
+
+    const accountSid = manager.serviceConfiguration.account_sid;
+
+    const enabledLsKey = `${packageName}-${accountSid}`;
+    const enabled = localStorage.getItem(enabledLsKey);
+    if (!enabled) {
+      localStorage.setItem(enabledLsKey, 'true');
+    } else if (enabled === 'false') {
+      return;
+    }
+
     setUpComponents();
     setUpNotifications();
     setUpActions();
